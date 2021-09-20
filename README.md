@@ -23,17 +23,6 @@ mkdir app.git && cd app.git
 
 git init --bare
 
-## Set permissions
-chgrp -R users  /home/beta/app.git/
-
-chmod -R g+rwX .
-
-## Sets the setgid bit on all the directories
-find . -type d -exec chmod g+s '{}' +
-
-## Make the directory a Git shared repo
-git config core.sharedRepository group
-
 ## Edit githook post-receive and add the following
 vi hooks/post-receive
 
