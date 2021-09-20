@@ -9,15 +9,19 @@ ssh root@ipnummer
 
 ## Create App folder (in users home directory)
 mkdir  /home/beta/app/
+
 mkdir /home/beta/tmp/
 
 ## Create repository folder
 cd /home/beta/
+
 mkdir app.git && cd app.git
+
 git init --bare
 
 ## Set permissions
 chgrp -R users  /home/beta/app.git/
+
 chmod -R g+rwX .
 
 ## Sets the setgid bit on all the directories
@@ -28,6 +32,7 @@ git config core.sharedRepository group
 
 ## Edit githook post-receive and add the following
 vi hooks/post-receive
+
 ```
 #!/bin/sh
 TARGET="/home/beta/app"
@@ -61,5 +66,7 @@ git remote add beta ssh://<your-user>@<your-ip>/home/beta/app.git/
 
 ## Commit and push
 git add . 
+
 git commit -m “Something changed“
+
 git push beta dev
