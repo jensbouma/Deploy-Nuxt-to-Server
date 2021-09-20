@@ -1,5 +1,7 @@
 # Deploy-Nuxt-to-server
-Deploy Nuxt App with Git on test or production server.
+Deploy Nuxt App with Git Push to test or production server.
+
+On the server Ngnix is working a proxy server, proxying my requests to 127.0.0.1:3000.
 
 In this example im using /home/beta/ as the home directory.
 The repository I want to push is dev, in the post-receive script this one gets selected to checkout.
