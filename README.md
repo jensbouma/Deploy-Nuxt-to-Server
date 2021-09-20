@@ -65,7 +65,7 @@ chmod +x hooks/post-receive
 ## Install PM2
 apt install pm2 -g
 
-## Connect dev machine
+## Add the server to the development machine
 git remote add beta ssh://[your username]@[your-ip]/home/beta/app.git/
 
 ## Commit and push
