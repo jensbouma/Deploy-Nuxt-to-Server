@@ -1,7 +1,8 @@
 # Deploy-Nuxt-to-server
-Deploy Nuxt App with Git on test/production server
+Deploy Nuxt App with Git on test or production server.
 
-Where using home/beta/ as our home directory on the server it can be changed when necessarily.
+In this example im using /home/beta/ as the home directory.
+The repository I want to push is dev, in the post-receive script this one gets selected to checkout.
 
 
 ## SSH to your server (with certificates)
@@ -62,7 +63,7 @@ chmod +x hooks/post-receive
 apt install pm2 -g
 
 ## Connect dev machine
-git remote add beta ssh://<your-user>@<your-ip>/home/beta/app.git/
+git remote add beta ssh://<<your-user>>@<<your-ip>>/home/beta/app.git/
 
 ## Commit and push
 git add . 
