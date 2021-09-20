@@ -1,4 +1,4 @@
-# Deploy-Nuxt-to-server
+# Deploy-Nuxt-to-Server
 This is a guide how to deploy a Nuxt App with Git Push to a test or production server.
 
 The script handle the instalation of NPM packages and starts build the nuxt server before running it on port 3000.
