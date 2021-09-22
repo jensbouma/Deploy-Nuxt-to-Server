@@ -28,24 +28,36 @@ vi hooks/post-receive
 
 ```
 #!/bin/sh
+BRANCH="master"
 TARGET="/home/beta/app"
 TEMP="/home/beta/tmp"
 REPO="/home/beta/app.git"
 
-mkdir -p $TEMP
-git --work-tree=$TEMP --git-dir=$REPO checkout dev -f
+while read oldrev newrev ref
+do
+        # only checking out the master (or whatever branch you would like to deploy)
+        if [ "$ref" = "refs/heads/$BRANCH" ];
+        then
+                echo "Ref $ref received. Deploying ${BRANCH} branch to production..."
+                mkdir -p $TEMP
+                git --work-tree=$TEMP --git-dir=$REPO checkout -f $BRANCE
 
-cd $TEMP
+                cd $TEMP
 
-npm install
-npm run build
+                npm install
+                npm run build
 
-rm -rf $TARGET
-mv $TEMP $TARGET && cd /
-wait 2
-cd $TARGET
-wait 1
-pm2 start npm -- start
+                rm -rf $TARGET
+                mv $TEMP $TARGET && cd /
+                wait 2
+                cd $TARGET
+                wait 1
+                pm2 start npm -- start
+        else
+                echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
+        fi
+done
+
 ```
 
 ## Make Executable
