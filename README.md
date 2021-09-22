@@ -28,7 +28,7 @@ vi hooks/post-receive
 
 ```
 #!/bin/sh
-BRANCH="master"
+BRANCH="beta"
 TARGET="/home/beta/app"
 TEMP="/home/beta/tmp"
 REPO="/home/beta/app.git"
