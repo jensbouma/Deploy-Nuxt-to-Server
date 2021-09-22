@@ -52,7 +52,7 @@ do
                 wait 2
                 cd $TARGET
                 wait 1
-                pm2 start npm -- start
+                pm2 start
         else
                 echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
         fi
@@ -65,6 +65,23 @@ chmod +x hooks/post-receive
 
 ## Install PM2
 apt install pm2 -g
+
+## Add ecosystem.config.js to your nuxt project
+```
+module.exports = {
+    apps: [
+      {
+        name: 'Beta',
+        exec_mode: 'cluster', // Optional: If you want it run multiple instances.
+        instances: 'max', // Or a number of instances.
+        // 'max' auto detects how many CPU cores there are.
+        // The previous option must exist to use the above.
+        script: './node_modules/nuxt/bin/nuxt.js',
+        args: 'start',
+      },
+    ],
+  }
+```
 
 ## Add the server to the development machine
 git remote add beta ssh://[your username]@[your-ip]/home/beta/app.git/
