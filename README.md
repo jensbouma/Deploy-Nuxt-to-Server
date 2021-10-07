@@ -64,7 +64,7 @@ done
 chmod +x hooks/post-receive
 
 ## Install PM2
-apt install pm2 -g
+npm install pm2 -g
 
 ## Add ecosystem.config.js to your nuxt project
 ```
